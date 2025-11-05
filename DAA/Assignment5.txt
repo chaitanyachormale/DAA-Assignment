@@ -1,0 +1,28 @@
+Enter total number of nodes, stages, and routes: 5 3 7
+Enter routes (from to cost):
+1 2 4
+1 3 2
+2 4 5
+2 5 10
+3 4 3
+3 5 7
+4 5 1
+
+Enter source and destination node: 1 5
+
+--- Simulating real-time updates (enter -1 to stop) ---
+Enter route (u v newCost): -1
+
+Expected Output:
+Optimal Route (Source → Destination): 1 → 3 → 4 → 5
+Minimum Cost: 6
+
+--- Simulating real-time updates (enter -1 to stop) ---
+
+=== Processing Delivery Request: 1 → 5 ===
+Optimal Route (Source → Destination): 1 → 3 → 4 → 5
+Minimum Cost: 6
+
+=== Processing Delivery Request: 2 → 5 ===
+Optimal Route (Source → Destination): 2 → 4 → 5
+Minimum Cost: 6

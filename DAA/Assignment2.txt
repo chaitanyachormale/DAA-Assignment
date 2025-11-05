@@ -1,0 +1,20 @@
+Enter number of movies: 5
+
+Enter movie details (Title Rating Year WatchTime):
+Inception 8.8 2010 1500000
+Avengers 8.0 2012 2000000
+Titanic 7.8 1997 1800000
+TheGodfather 9.2 1972 1200000
+Interstellar 8.6 2014 1300000
+
+Sort by parameter (rating/year/watchtime): rating
+
+Expected Output:
+Sorted Movies (based on rating):
+TheGodfather | Rating: 9.2 | Year: 1972 | Watch Time: 1200000 views
+Inception | Rating: 8.8 | Year: 2010 | Watch Time: 1500000 views
+Interstellar | Rating: 8.6 | Year: 2014 | Watch Time: 1300000 views
+Avengers | Rating: 8.0 | Year: 2012 | Watch Time: 2000000 views
+Titanic | Rating: 7.8 | Year: 1997 | Watch Time: 1800000 views
+
+Sorting completed in 0.00001 seconds.

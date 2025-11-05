@@ -1,0 +1,18 @@
+Enter number of customer orders: 5
+Enter orderID and timestamp for each order:
+101 1699000000
+102 1699000500
+103 1698999000
+104 1699001000
+105 1698999500
+
+Expected Output:
+Orders sorted by timestamp:
+OrderID: 103 | Timestamp: 1698999000
+OrderID: 105 | Timestamp: 1698999500
+OrderID: 101 | Timestamp: 1699000000
+OrderID: 102 | Timestamp: 1699000500
+OrderID: 104 | Timestamp: 1699001000
+
+Time taken for sorting: 0.000012 seconds
+

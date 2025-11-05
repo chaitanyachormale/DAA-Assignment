@@ -1,0 +1,22 @@
+Enter number of relief items: 5
+
+Enter details for each item (Name Weight Value Divisible[1/0]):
+Water 10 60 1
+Food 20 100 1
+Medicine 5 80 0
+Blankets 15 90 0
+Tent 25 120 0
+
+Enter maximum weight capacity of boat (kg): 50
+
+Expected Output:
+Items selected for transport:
+Item           WeightTaken    ValueGained    
+---------------------------------------------
+Medicine       5              80             
+Water          10             60             
+Food           20             100            
+Blankets       15             90             
+
+Total weight carried: 50 / 50 kg
+Maximum total utility value: 330
