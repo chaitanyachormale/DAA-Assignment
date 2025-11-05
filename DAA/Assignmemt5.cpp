@@ -29,11 +29,11 @@ public:
         graph[u].push_back({v, cost});
     }
 
-    // Use Dynamic Programming to find optimal route in a multistage graph
+    
     void findOptimalRoute(int source, int destination) {
-        minCost[destination] = 0; // base case
+        minCost[destination] = 0; 
 
-        // Traverse backwards from last to first node
+     
         for (int i = totalNodes; i >= 1; i--) {
             for (auto &edge : graph[i]) {
                 if (minCost[i] > edge.cost + minCost[edge.to]) {
@@ -43,7 +43,7 @@ public:
             }
         }
 
-        // Display optimal path
+     
         cout << "\nOptimal Route (Source → Destination): ";
         int current = source;
         cout << current;
@@ -54,7 +54,7 @@ public:
         cout << "\nMinimum Cost: " << minCost[source] << "\n";
     }
 
-    // Simulate real-time updates (e.g., traffic, weather, fuel cost)
+    
     void updateRouteCost(int u, int v, double newCost) {
         for (auto &edge : graph[u]) {
             if (edge.to == v) {
@@ -66,7 +66,6 @@ public:
         cout << "Route not found!\n";
     }
 
-    // Process multiple delivery requests in batch
     void batchProcess(const vector<pair<int, int>> &requests) {
         for (auto &req : requests) {
             cout << "\n=== Processing Delivery Request: " << req.first << " → " << req.second << " ===";
@@ -99,7 +98,7 @@ int main() {
 
     cargo.findOptimalRoute(source, destination);
 
-    // Real-time update simulation
+    
     cout << "\n--- Simulating real-time updates (enter -1 to stop) ---\n";
     while (true) {
         int u;
@@ -113,10 +112,11 @@ int main() {
         cargo.findOptimalRoute(source, destination);
     }
 
-    // Batch requests
+
     vector<pair<int, int>> requests = {{1, destination}, {2, destination}};
     cargo.batchProcess(requests);
 
     return 0;
 }
+
 
