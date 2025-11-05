@@ -1,3 +1,5 @@
+// Name:Chaitanya Ashok Chormale
+//PRN:123B1F014
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -75,3 +77,4 @@ int main() {
     cout << "\nTime taken for sorting: " << duration.count() << " seconds\n";
     return 0;
 }
+
