@@ -1,27 +1,29 @@
+// Name:Chaitanya Ashok Chormale
+//PRN:123B1F014
 #include <iostream>
 #include <vector>
 #include <algorithm>
 #include <iomanip>
 using namespace std;
 
-// Structure to represent a relief item
+
 struct Item {
     string name;
-    double weight;     // weight in kg
-    double value;      // utility value
-    bool divisible;    // true if item can be divided (e.g. food/water)
+    double weight;     
+    double value;      
+    bool divisible;   
 
     double valuePerWeight() const {
         return value / weight;
     }
 };
 
-// Comparator: sort items by value-to-weight ratio in descending order
+
 bool compare(Item a, Item b) {
     return a.valuePerWeight() > b.valuePerWeight();
 }
 
-// Fractional Knapsack algorithm
+
 double fractionalKnapsack(vector<Item> &items, double capacity) {
     sort(items.begin(), items.end(), compare);
 
@@ -38,7 +40,6 @@ double fractionalKnapsack(vector<Item> &items, double capacity) {
         if (currentWeight >= capacity)
             break;
 
-        // If item can be fully taken
         if (currentWeight + item.weight <= capacity) {
             currentWeight += item.weight;
             totalValue += item.value;
@@ -47,7 +48,7 @@ double fractionalKnapsack(vector<Item> &items, double capacity) {
                  << setw(15) << item.value << endl;
         } 
         else if (item.divisible) {
-            // Take fractional part of divisible items
+          
             double remain = capacity - currentWeight;
             double fraction = remain / item.weight;
             double valueTaken = item.value * fraction;
@@ -57,9 +58,8 @@ double fractionalKnapsack(vector<Item> &items, double capacity) {
             cout << left << setw(15) << item.name
                  << setw(15) << remain
                  << setw(15) << valueTaken << endl;
-            break; // boat is full
+            break; 
         }
-        // If item is indivisible and can't fit, skip it
     }
 
     cout << "\nTotal weight carried: " << currentWeight << " / " << capacity << " kg\n";
@@ -89,3 +89,4 @@ int main() {
 
     return 0;
 }
+
