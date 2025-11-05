@@ -1,11 +1,13 @@
+// Name:Chaitanya Ashok Chormale
+//PRN:123B1F014
 #include <bits/stdc++.h>
 using namespace std;
 
 class TimetableScheduler {
 private:
     int numCourses;
-    vector<vector<int>> adj; // adjacency list (conflicts)
-    vector<int> color;       // assigned colors to courses
+    vector<vector<int>> adj; 
+    vector<int> color;       
 
 public:
     TimetableScheduler(int n) {
@@ -14,56 +16,49 @@ public:
         color.assign(n, -1);
     }
 
-    // Add edge if two courses have overlapping students
+
     void addConflict(int c1, int c2) {
         adj[c1].push_back(c2);
         adj[c2].push_back(c1);
     }
 
-    // ==============================
-    // 1️⃣ GREEDY COLORING ALGORITHM
-    // ==============================
+
     int greedyColoring() {
         color.assign(numCourses, -1);
-        color[0] = 0; // assign first color to first course
+        color[0] = 0; 
 
         vector<bool> available(numCourses, false);
 
         for (int u = 1; u < numCourses; u++) {
-            // Mark colors used by adjacent vertices
+          
             for (int v : adj[u]) {
                 if (color[v] != -1)
                     available[color[v]] = true;
             }
 
-            // Find the first available color
             int cr;
             for (cr = 0; cr < numCourses; cr++)
                 if (!available[cr]) break;
 
-            color[u] = cr; // assign color
+            color[u] = cr; 
 
-            // Reset availability
+            
             for (int v : adj[u]) {
                 if (color[v] != -1)
                     available[color[v]] = false;
             }
         }
 
-        // Find total colors used
+     
         int maxColor = *max_element(color.begin(), color.end()) + 1;
         return maxColor;
     }
 
-    // ==============================
-    // 2️⃣ WELSH-POWELL ALGORITHM
-    // ==============================
     int welshPowellColoring() {
         vector<pair<int, int>> degree(numCourses);
         for (int i = 0; i < numCourses; i++)
             degree[i] = {adj[i].size(), i};
 
-        // Sort vertices by descending degree
         sort(degree.rbegin(), degree.rend());
 
         color.assign(numCourses, -1);
@@ -94,9 +89,7 @@ public:
         return colorCount;
     }
 
-    // ==============================
-    // 3️⃣ DSATUR ALGORITHM (Degree of Saturation)
-    // ==============================
+
     int dsaturColoring() {
         vector<int> degree(numCourses, 0), saturation(numCourses, 0);
         color.assign(numCourses, -1);
@@ -117,7 +110,6 @@ public:
                 }
             }
 
-            // Find smallest available color
             vector<bool> used(numCourses, false);
             for (int v : adj[node]) {
                 if (color[v] != -1)
@@ -130,7 +122,7 @@ public:
             color[node] = c;
             coloredCount++;
 
-            // Update saturation of neighbors
+        
             for (int v : adj[node]) {
                 if (color[v] == -1) {
                     set<int> uniqueColors;
@@ -146,7 +138,7 @@ public:
         return maxColor;
     }
 
-    // Display the schedule
+
     void displaySchedule(int totalColors) {
         cout << "\nTotal Exam Slots Required: " << totalColors << "\n";
         for (int i = 0; i < numCourses; i++) {
@@ -155,9 +147,7 @@ public:
     }
 };
 
-// ==============================
-// MAIN PROGRAM
-// ==============================
+
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
@@ -177,7 +167,6 @@ int main() {
 
     cout << "\n=== University Exam Scheduling ===";
 
-    // 1️⃣ Greedy Coloring
     auto start = chrono::high_resolution_clock::now();
     int greedySlots = scheduler.greedyColoring();
     auto end = chrono::high_resolution_clock::now();
@@ -187,7 +176,7 @@ int main() {
          << chrono::duration_cast<chrono::microseconds>(end - start).count()
          << " µs\n";
 
-    // 2️⃣ Welsh-Powell
+
     start = chrono::high_resolution_clock::now();
     int wpSlots = scheduler.welshPowellColoring();
     end = chrono::high_resolution_clock::now();
@@ -197,7 +186,7 @@ int main() {
          << chrono::duration_cast<chrono::microseconds>(end - start).count()
          << " µs\n";
 
-    // 3️⃣ DSATUR
+
     start = chrono::high_resolution_clock::now();
     int dsSlots = scheduler.dsaturColoring();
     end = chrono::high_resolution_clock::now();
@@ -209,3 +198,4 @@ int main() {
 
     return 0;
 }
+
