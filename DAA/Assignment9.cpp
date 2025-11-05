@@ -1,25 +1,27 @@
+// Name:Chaitanya Ashok Chormale
+//PRN:123B1F014
 #include <bits/stdc++.h>
 using namespace std;
 
 const int INF = INT_MAX;
 
-// Structure to represent the TSP state
+
 struct Node {
-    vector<int> path;    // Cities visited in the path
-    int cost;            // Cost of the path so far
-    int bound;           // Lower bound of the total cost
-    int level;           // Level in the search tree
+    vector<int> path;    
+    int cost;            
+    int bound;           
+    int level;          
 };
 
-// Function to calculate a simple lower bound (reduced cost)
+
 int calculateBound(vector<vector<int>>& costMatrix, vector<int>& path, int N) {
     int bound = 0;
     vector<bool> visited(N, false);
 
-    // Mark cities already visited
+ 
     for (int city : path) visited[city] = true;
 
-    // Add minimum outgoing edge for unvisited cities
+  
     for (int i = 0; i < N; i++) {
         if (!visited[i]) {
             int minEdge = INF;
@@ -33,19 +35,20 @@ int calculateBound(vector<vector<int>>& costMatrix, vector<int>& path, int N) {
     return bound;
 }
 
-// Comparator for priority queue to get least cost first
+
 struct cmp {
     bool operator()(Node a, Node b) {
         return a.bound > b.bound;
     }
 };
 
-// Branch and Bound TSP solver
+
+
 pair<int, vector<int>> branchAndBoundTSP(vector<vector<int>>& costMatrix, int N) {
     priority_queue<Node, vector<Node>, cmp> pq;
 
     Node root;
-    root.path.push_back(0); // start at city 0
+    root.path.push_back(0); 
     root.cost = 0;
     root.level = 0;
     root.bound = calculateBound(costMatrix, root.path, N);
@@ -59,23 +62,23 @@ pair<int, vector<int>> branchAndBoundTSP(vector<vector<int>>& costMatrix, int N)
         Node curr = pq.top();
         pq.pop();
 
-        if (curr.bound >= minCost) continue; // prune
+        if (curr.bound >= minCost) continue; 
 
         if (curr.level == N - 1) {
-            // Complete the tour
+           
             int last = curr.path.back();
-            if (costMatrix[last][0] != INF) { // can return to start
+            if (costMatrix[last][0] != INF) {
                 int totalCost = curr.cost + costMatrix[last][0];
                 if (totalCost < minCost) {
                     minCost = totalCost;
                     bestPath = curr.path;
-                    bestPath.push_back(0); // return to start
+                    bestPath.push_back(0); /
                 }
             }
             continue;
         }
 
-        // Expand node
+        
         for (int i = 0; i < N; i++) {
             if (find(curr.path.begin(), curr.path.end(), i) == curr.path.end() && costMatrix[curr.path.back()][i] != INF) {
                 Node child;
@@ -86,7 +89,7 @@ pair<int, vector<int>> branchAndBoundTSP(vector<vector<int>>& costMatrix, int N)
                 child.bound = child.cost + calculateBound(costMatrix, child.path, N);
 
                 if (child.bound < minCost)
-                    pq.push(child); // only push promising nodes
+                    pq.push(child); 
             }
         }
     }
@@ -116,3 +119,4 @@ int main() {
 
     return 0;
 }
+
