@@ -3,13 +3,13 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// Structure representing a customer order
+
 struct Order {
     int orderID;
-    long long timestamp; // Unix timestamp or any time representation
+    long long timestamp; 
 };
 
-// Merge two sorted halves of the array
+
 void merge(vector<Order> &orders, int left, int mid, int right) {
     int n1 = mid - left + 1;
     int n2 = right - mid;
@@ -24,7 +24,7 @@ void merge(vector<Order> &orders, int left, int mid, int right) {
 
     int i = 0, j = 0, k = left;
 
-    // Merge the two halves by comparing timestamps
+  
     while (i < n1 && j < n2) {
         if (leftArr[i].timestamp <= rightArr[j].timestamp)
             orders[k++] = leftArr[i++];
@@ -32,14 +32,13 @@ void merge(vector<Order> &orders, int left, int mid, int right) {
             orders[k++] = rightArr[j++];
     }
 
-    // Copy remaining elements
+   
     while (i < n1)
         orders[k++] = leftArr[i++];
     while (j < n2)
         orders[k++] = rightArr[j++];
 }
 
-// Recursive merge sort
 void mergeSort(vector<Order> &orders, int left, int right) {
     if (left < right) {
         int mid = left + (right - left) / 2;
@@ -77,4 +76,5 @@ int main() {
     cout << "\nTime taken for sorting: " << duration.count() << " seconds\n";
     return 0;
 }
+
 
