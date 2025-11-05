@@ -1,0 +1,13 @@
+Enter number of items: 4
+Enter truck capacity (in kg): 10
+Enter item details:
+Water 3 50 1
+Food 4 60 1
+Medicine 2 40 1
+Tools 5 30 0
+
+Output:
+Maximum Utility Value (DP): 150
+Approximate Utility (Greedy): 150
+
+Maximum Utility with Priority: 170
