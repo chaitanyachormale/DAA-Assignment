@@ -11,7 +11,7 @@ void SelectionSort(vector<int>& arr) {
                 minIndex = j;
             }
         }
-        // Swap arr[i] and arr[minIndex]
+    
         int temp = arr[i];
         arr[i] = arr[minIndex];
         arr[minIndex] = temp;
@@ -25,7 +25,7 @@ void printArray(const vector<int>& arr) {
 }
 
 int main() {
-    // Changed input array for demonstration
+   
     vector<int> arr = {29, 10, 14, 37, 13};
 
     cout << "Array size is = " << arr.size() << "\n";
@@ -39,3 +39,4 @@ int main() {
 
     return 0;
 }
+
