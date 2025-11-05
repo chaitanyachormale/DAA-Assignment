@@ -1,14 +1,16 @@
+// Name:Chaitanya Ashok Chormale
+//PRN:123B1F014
 #include <bits/stdc++.h>
 using namespace std;
 
 struct Edge {
     int to;
-    double weight; // travel time in minutes
+    double weight; 
 };
 
 class Graph {
-    int V; // number of intersections
-    vector<vector<Edge>> adj; // adjacency list
+    int V; 
+    vector<vector<Edge>> adj; 
 
 public:
     Graph(int vertices) {
@@ -16,13 +18,13 @@ public:
         adj.resize(V);
     }
 
-    // Add a road (bidirectional edge)
+    
     void addEdge(int u, int v, double w) {
         adj[u].push_back({v, w});
         adj[v].push_back({u, w});
     }
 
-    // Update the weight (real-time traffic update)
+    
     void updateWeight(int u, int v, double newWeight) {
         for (auto &e : adj[u]) {
             if (e.to == v) {
@@ -38,7 +40,7 @@ public:
         }
     }
 
-    // Dijkstra's Algorithm
+   
     vector<double> dijkstra(int src, vector<int> &parent) {
         vector<double> dist(V, DBL_MAX);
         parent.assign(V, -1);
@@ -71,7 +73,7 @@ public:
         return dist;
     }
 
-    // Print shortest path
+    
     void printPath(int dest, const vector<int> &parent) {
         if (parent[dest] == -1) {
             cout << dest;
@@ -122,7 +124,7 @@ int main() {
     for (int i = 0; i < V; i++)
         cout << "Node " << i << ": " << (dist[i] == DBL_MAX ? -1 : dist[i]) << " min\n";
 
-    // Find nearest hospital
+    /
     double minDist = DBL_MAX;
     int nearestHospital = -1;
     for (int h : hospitals) {
@@ -141,7 +143,8 @@ int main() {
         cout << endl;
     }
 
-    // Simulate dynamic weight update (real-time traffic)
+    
+    
     char choice;
     cout << "\nDo you want to simulate a traffic update? (y/n): ";
     cin >> choice;
@@ -174,3 +177,4 @@ int main() {
 
     return 0;
 }
+
