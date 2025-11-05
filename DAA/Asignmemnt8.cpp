@@ -16,15 +16,13 @@ public:
         color.assign(n, -1);
     }
 
-    // Add conflict (edge) between two courses
+   
     void addConflict(int c1, int c2) {
         adj[c1].push_back(c2);
         adj[c2].push_back(c1);
     }
 
-    // ==========================
-    // 1️⃣ GREEDY COLORING
-    // ==========================
+
     int greedyColoring() {
         color.assign(numCourses, -1);
         color[0] = 0;
@@ -51,15 +49,13 @@ public:
         return totalColors;
     }
 
-    // ==========================
-    // 2️⃣ WELSH-POWELL ALGORITHM
-    // ==========================
+ 
     int welshPowellColoring() {
         vector<pair<int, int>> degree(numCourses);
         for (int i = 0; i < numCourses; i++)
             degree[i] = {adj[i].size(), i};
 
-        sort(degree.rbegin(), degree.rend()); // sort by degree descending
+        sort(degree.rbegin(), degree.rend()); 
         color.assign(numCourses, -1);
         int colorCount = 0;
 
@@ -86,9 +82,7 @@ public:
         return colorCount;
     }
 
-    // ==========================
-    // 3️⃣ DSATUR ALGORITHM
-    // ==========================
+ 
     int dsaturColoring() {
         vector<int> degree(numCourses), saturation(numCourses, 0);
         for (int i = 0; i < numCourses; i++)
@@ -138,9 +132,7 @@ public:
         return totalColors;
     }
 
-    // ==========================
-    // 4️⃣ ROOM ALLOCATION EXTENSION
-    // ==========================
+
     void allocateRooms(int totalColors, vector<int> roomCapacities, vector<int> courseSizes) {
         cout << "\n--- Room Allocation per Slot ---\n";
         for (int slot = 0; slot < totalColors; slot++) {
@@ -166,9 +158,7 @@ public:
         }
     }
 
-    // ==========================
-    // Display Results
-    // ==========================
+   
     void displaySchedule(int slots) {
         cout << "\nTotal Exam Slots Required: " << slots << "\n";
         for (int i = 0; i < numCourses; i++)
@@ -176,9 +166,7 @@ public:
     }
 };
 
-// ==========================
-// MAIN FUNCTION
-// ==========================
+
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
@@ -195,9 +183,7 @@ int main() {
         scheduler.addConflict(c1, c2);
     }
 
-    // -------------------------
-    // Compare Algorithms
-    // -------------------------
+
     cout << "\n=== UNIVERSITY EXAM SCHEDULING ===\n";
 
     auto start = chrono::high_resolution_clock::now();
@@ -227,9 +213,7 @@ int main() {
          << chrono::duration_cast<chrono::microseconds>(end - start).count()
          << " µs\n";
 
-    // -------------------------
-    // Room Allocation Extension
-    // -------------------------
+
     cout << "\nEnter room capacities (e.g., 3 rooms): ";
     vector<int> roomCapacities(3);
     for (int &r : roomCapacities) cin >> r;
@@ -242,4 +226,5 @@ int main() {
 
     return 0;
 }
+
 
