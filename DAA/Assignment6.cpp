@@ -1,3 +1,5 @@
+// Name:Chaitanya Ashok Chormale
+//PRN:123B1F014
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -5,12 +7,10 @@ struct Item {
     string name;
     int weight;
     int utility;
-    bool isPerishable; // higher priority if true
+    bool isPerishable; 
 };
 
-// =============================
-// 1️⃣ Brute Force (Recursive)
-// =============================
+
 int knapsackBruteForce(vector<Item> &items, int W, int n) {
     if (n == 0 || W == 0)
         return 0;
@@ -20,9 +20,7 @@ int knapsackBruteForce(vector<Item> &items, int W, int n) {
                knapsackBruteForce(items, W, n - 1));
 }
 
-// =============================
-// 2️⃣ Dynamic Programming (Optimal)
-// =============================
+
 int knapsackDP(vector<Item> &items, int W) {
     int n = items.size();
     vector<vector<int>> dp(n + 1, vector<int>(W + 1, 0));
@@ -36,7 +34,7 @@ int knapsackDP(vector<Item> &items, int W) {
         }
     }
 
-    // Display chosen items
+    
     int res = dp[n][W];
     int w = W;
     cout << "\nOptimal Items Selected:\n";
@@ -52,10 +50,7 @@ int knapsackDP(vector<Item> &items, int W) {
     return dp[n][W];
 }
 
-// =============================
-// 3️⃣ Greedy Approximation
-// (Utility-to-Weight Ratio)
-// =============================
+
 double knapsackGreedy(vector<Item> items, int W) {
     sort(items.begin(), items.end(), [](Item &a, Item &b) {
         double r1 = (double)a.utility / a.weight;
@@ -78,21 +73,16 @@ double knapsackGreedy(vector<Item> items, int W) {
     return totalUtility;
 }
 
-// =============================
-// 4️⃣ Extended Model:
-// Priority for Perishables
-// =============================
+
 int knapsackWithPriority(vector<Item> &items, int W) {
     for (auto &it : items) {
         if (it.isPerishable)
-            it.utility += 20; // boost utility for priority items
+            it.utility += 20;
     }
     return knapsackDP(items, W);
 }
 
-// =============================
-// 🏁 Main Function
-// =============================
+
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
@@ -121,7 +111,6 @@ int main() {
          << chrono::duration_cast<chrono::microseconds>(end - start).count() / 1000.0
          << " ms\n";
 
-    // Optional comparison
     cout << "\n[Comparison: Greedy Approach]";
     cout << "\nApproximate Utility (Greedy): " << knapsackGreedy(items, W);
 
@@ -131,3 +120,4 @@ int main() {
 
     return 0;
 }
+
