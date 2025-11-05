@@ -12,9 +12,9 @@ struct Item {
     Item(double v, double w, bool d) : value(v), weight(w), divisible(d) {}
 };
 
-// Function to calculate the maximum total utility value
+
 double getMaxValue(vector<Item>& items, double capacity) {
-    // Sort items by value-to-weight ratio in descending order
+   
     sort(items.begin(), items.end(), [](const Item& a, const Item& b) {
         return (a.value / a.weight) > (b.value / b.weight);
     });
@@ -24,17 +24,17 @@ double getMaxValue(vector<Item>& items, double capacity) {
 
     for (const Item& item : items) {
         if (currentWeight + item.weight <= capacity) {
-            // Take the whole item
+           
             currentWeight += item.weight;
             totalValue += item.value;
         } else {
-            // Take fraction only if divisible
+            /
             if (item.divisible) {
                 double remaining = capacity - currentWeight;
                 totalValue += (item.value / item.weight) * remaining;
                 currentWeight += remaining;
             }
-            // Capacity full
+            
             break;
         }
     }
@@ -77,3 +77,4 @@ int main() {
 
     return 0;
 }
+
