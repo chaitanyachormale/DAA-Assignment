@@ -16,15 +16,15 @@ int main() {
         }
     }
 
-    int source = 0;          // Usually first node
-    int destination = n - 1; // Usually last node
+    int source = 0;        
+    int destination = n - 1; 
 
-    vector<int> cost(n, INT_MAX); // cost[i] = min cost from i to destination
-    vector<int> next(n, -1);      // next[i] = next vertex on shortest path
+    vector<int> cost(n, INT_MAX); 
+    vector<int> next(n, -1);     
 
-    cost[destination] = 0; // cost to reach destination from itself is 0
+    cost[destination] = 0; 
 
-    // Process vertices from second last to first
+
     for (int i = n - 2; i >= 0; i--) {
         int minCost = INT_MAX;
         int minVertex = -1;
@@ -43,7 +43,6 @@ int main() {
 
     cout << "Shortest distance from " << source << " to " << destination << " = " << cost[source] << "\n";
 
-    // Print the path
     cout << "Path: ";
     int v = source;
     cout << v;
@@ -64,3 +63,4 @@ int main() {
 // 0 0 0 0 0
 // Shortest distance from 0 to 4 = 4
 // Path: 0 -> 2 -> 4
+
